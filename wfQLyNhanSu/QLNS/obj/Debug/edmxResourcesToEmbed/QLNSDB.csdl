@@ -1,0 +1,536 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="QLNSModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="BANG_CHAM_CONG">
+    <Key>
+      <PropertyRef Name="MaNS" />
+      <PropertyRef Name="Thang" />
+      <PropertyRef Name="Nam" />
+    </Key>
+    <Property Name="MaNS" Type="Int32" Nullable="false" />
+    <Property Name="SoNgayDiLam" Type="Byte" />
+    <Property Name="SoNgayNghiCoPhep" Type="Byte" />
+    <Property Name="SoNgayNghi" Type="Byte" />
+    <Property Name="Thang" Type="Byte" Nullable="false" />
+    <Property Name="Nam" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="NHAN_SU" Relationship="Self.FK_MaNS_NHAN_SU_BANGCHAMCONG" FromRole="BANG_CHAM_CONG" ToRole="NHAN_SU" />
+  </EntityType>
+  <EntityType Name="CHUC_VU">
+    <Key>
+      <PropertyRef Name="MaCV" />
+    </Key>
+    <Property Name="MaCV" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="TenCV" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="MoTa" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="NHAN_SU" Relationship="Self.FK_MaCV_CHUCVU" FromRole="CHUC_VU" ToRole="NHAN_SU" />
+  </EntityType>
+  <EntityType Name="DU_AN">
+    <Key>
+      <PropertyRef Name="MaDA" />
+    </Key>
+    <Property Name="MaDA" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="TenDA" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="TGBD" Type="DateTime" Precision="0" />
+    <Property Name="TGHTDK" Type="DateTime" Precision="0" />
+    <Property Name="SoTV" Type="Byte" />
+    <Property Name="MaQL" Type="Int32" />
+    <NavigationProperty Name="NHAN_SU" Relationship="Self.FK_MaQL" FromRole="DU_AN" ToRole="NHAN_SU" />
+    <NavigationProperty Name="NHAN_SU1" Relationship="Self.NHANSU_DUAN" FromRole="DU_AN" ToRole="NHAN_SU" />
+  </EntityType>
+  <EntityType Name="HOP_DONG">
+    <Key>
+      <PropertyRef Name="MaHD" />
+    </Key>
+    <Property Name="MaHD" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="LoaiHD" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+    <Property Name="NgayBD" Type="DateTime" Precision="0" />
+    <Property Name="NgayKT" Type="DateTime" Precision="0" />
+    <Property Name="NgayKyHD" Type="DateTime" Precision="0" />
+    <Property Name="MaNS" Type="Int32" />
+    <NavigationProperty Name="NHAN_SU" Relationship="Self.FK_MaHD_HOPDONG" FromRole="HOP_DONG" ToRole="NHAN_SU" />
+    <NavigationProperty Name="NHAN_SU1" Relationship="Self.FK_MaNS_NHAN_SU_HOPDONG" FromRole="HOP_DONG" ToRole="NHAN_SU" />
+  </EntityType>
+  <EntityType Name="KHEN_THUONG">
+    <Key>
+      <PropertyRef Name="MaKT" />
+    </Key>
+    <Property Name="MaKT" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="HinhThucKT" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="NgayKT" Type="DateTime" Precision="0" />
+    <Property Name="GiaTri" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="NoiDung" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="NHAN_SU" Relationship="Self.NHANSU_KHENTHUONG" FromRole="KHEN_THUONG" ToRole="NHAN_SU" />
+  </EntityType>
+  <EntityType Name="LUONG">
+    <Key>
+      <PropertyRef Name="MaNS" />
+    </Key>
+    <Property Name="MaNS" Type="Int32" Nullable="false" />
+    <Property Name="PhuCap" Type="Decimal" Precision="19" Scale="4" />
+    <Property Name="LuongCoBan" Type="Decimal" Precision="19" Scale="4" />
+    <NavigationProperty Name="NHAN_SU" Relationship="Self.FK_MaNS_NHAN_SU_LUONG" FromRole="LUONG" ToRole="NHAN_SU" />
+  </EntityType>
+  <EntityType Name="NHAN_SU">
+    <Key>
+      <PropertyRef Name="MaNS" />
+    </Key>
+    <Property Name="MaNS" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Ten" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="NgaySinh" Type="DateTime" Precision="0" />
+    <Property Name="GioiTinh" Type="Boolean" />
+    <Property Name="QueQuan" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="SDT" Type="String" MaxLength="10" FixedLength="true" Unicode="false" />
+    <Property Name="TrinhDo" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Name="DanToc" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Name="ChuyenNganh" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="QuocTich" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Name="Avt" Type="Binary" MaxLength="Max" FixedLength="false" />
+    <Property Name="DiaChi" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="MaPB" Type="Int32" />
+    <Property Name="MaHD" Type="Int32" />
+    <Property Name="MaCV" Type="Int32" />
+    <NavigationProperty Name="BANG_CHAM_CONG" Relationship="Self.FK_MaNS_NHAN_SU_BANGCHAMCONG" FromRole="NHAN_SU" ToRole="BANG_CHAM_CONG" />
+    <NavigationProperty Name="CHUC_VU" Relationship="Self.FK_MaCV_CHUCVU" FromRole="NHAN_SU" ToRole="CHUC_VU" />
+    <NavigationProperty Name="DU_AN" Relationship="Self.FK_MaQL" FromRole="NHAN_SU" ToRole="DU_AN" />
+    <NavigationProperty Name="HOP_DONG" Relationship="Self.FK_MaHD_HOPDONG" FromRole="NHAN_SU" ToRole="HOP_DONG" />
+    <NavigationProperty Name="HOP_DONG1" Relationship="Self.FK_MaNS_NHAN_SU_HOPDONG" FromRole="NHAN_SU" ToRole="HOP_DONG" />
+    <NavigationProperty Name="LUONG" Relationship="Self.FK_MaNS_NHAN_SU_LUONG" FromRole="NHAN_SU" ToRole="LUONG" />
+    <NavigationProperty Name="PHONG_BAN" Relationship="Self.FK_MaPB_PHONGBAN" FromRole="NHAN_SU" ToRole="PHONG_BAN" />
+    <NavigationProperty Name="PHONG_BAN1" Relationship="Self.FK_MaTruongPhong" FromRole="NHAN_SU" ToRole="PHONG_BAN" />
+    <NavigationProperty Name="DU_AN1" Relationship="Self.NHANSU_DUAN" FromRole="NHAN_SU" ToRole="DU_AN" />
+    <NavigationProperty Name="KHEN_THUONG" Relationship="Self.NHANSU_KHENTHUONG" FromRole="NHAN_SU" ToRole="KHEN_THUONG" />
+  </EntityType>
+  <EntityType Name="NHAN_SU_BACKUP">
+    <Key>
+      <PropertyRef Name="MaNS" />
+    </Key>
+    <Property Name="MaNS" Type="Int32" Nullable="false" />
+    <Property Name="Ten" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="NgaySinh" Type="DateTime" Precision="0" />
+    <Property Name="GioiTinh" Type="Boolean" />
+    <Property Name="QueQuan" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="SDT" Type="String" MaxLength="10" FixedLength="true" Unicode="false" />
+    <Property Name="TrinhDo" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Name="DanToc" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Name="ChuyenNganh" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="QuocTich" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Name="Avt" Type="Binary" MaxLength="Max" FixedLength="false" />
+    <Property Name="DiaChi" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="MaPB" Type="Int32" />
+    <Property Name="MaHD" Type="Int32" />
+    <Property Name="MaCV" Type="Int32" />
+  </EntityType>
+  <EntityType Name="PHONG_BAN">
+    <Key>
+      <PropertyRef Name="MaPB" />
+    </Key>
+    <Property Name="MaPB" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="TenPB" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="DiaCHi" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="Email" Type="String" MaxLength="50" FixedLength="true" Unicode="false" />
+    <Property Name="SDT" Type="String" MaxLength="10" FixedLength="true" Unicode="false" />
+    <Property Name="MaTruongPhong" Type="Int32" />
+    <NavigationProperty Name="NHAN_SU" Relationship="Self.FK_MaPB_PHONGBAN" FromRole="PHONG_BAN" ToRole="NHAN_SU" />
+    <NavigationProperty Name="NHAN_SU1" Relationship="Self.FK_MaTruongPhong" FromRole="PHONG_BAN" ToRole="NHAN_SU" />
+  </EntityType>
+  <EntityType Name="sysdiagram">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <Association Name="FK_MaNS_NHAN_SU_BANGCHAMCONG">
+    <End Role="NHAN_SU" Type="Self.NHAN_SU" Multiplicity="1" />
+    <End Role="BANG_CHAM_CONG" Type="Self.BANG_CHAM_CONG" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="NHAN_SU">
+        <PropertyRef Name="MaNS" />
+      </Principal>
+      <Dependent Role="BANG_CHAM_CONG">
+        <PropertyRef Name="MaNS" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_MaCV_CHUCVU">
+    <End Role="CHUC_VU" Type="Self.CHUC_VU" Multiplicity="0..1" />
+    <End Role="NHAN_SU" Type="Self.NHAN_SU" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CHUC_VU">
+        <PropertyRef Name="MaCV" />
+      </Principal>
+      <Dependent Role="NHAN_SU">
+        <PropertyRef Name="MaCV" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_MaQL">
+    <End Role="NHAN_SU" Type="Self.NHAN_SU" Multiplicity="0..1" />
+    <End Role="DU_AN" Type="Self.DU_AN" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="NHAN_SU">
+        <PropertyRef Name="MaNS" />
+      </Principal>
+      <Dependent Role="DU_AN">
+        <PropertyRef Name="MaQL" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_MaHD_HOPDONG">
+    <End Role="HOP_DONG" Type="Self.HOP_DONG" Multiplicity="0..1" />
+    <End Role="NHAN_SU" Type="Self.NHAN_SU" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="HOP_DONG">
+        <PropertyRef Name="MaHD" />
+      </Principal>
+      <Dependent Role="NHAN_SU">
+        <PropertyRef Name="MaHD" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_MaNS_NHAN_SU_HOPDONG">
+    <End Role="NHAN_SU" Type="Self.NHAN_SU" Multiplicity="0..1" />
+    <End Role="HOP_DONG" Type="Self.HOP_DONG" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="NHAN_SU">
+        <PropertyRef Name="MaNS" />
+      </Principal>
+      <Dependent Role="HOP_DONG">
+        <PropertyRef Name="MaNS" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_MaNS_NHAN_SU_LUONG">
+    <End Role="NHAN_SU" Type="Self.NHAN_SU" Multiplicity="1" />
+    <End Role="LUONG" Type="Self.LUONG" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="NHAN_SU">
+        <PropertyRef Name="MaNS" />
+      </Principal>
+      <Dependent Role="LUONG">
+        <PropertyRef Name="MaNS" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_MaPB_PHONGBAN">
+    <End Role="PHONG_BAN" Type="Self.PHONG_BAN" Multiplicity="0..1" />
+    <End Role="NHAN_SU" Type="Self.NHAN_SU" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PHONG_BAN">
+        <PropertyRef Name="MaPB" />
+      </Principal>
+      <Dependent Role="NHAN_SU">
+        <PropertyRef Name="MaPB" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_MaTruongPhong">
+    <End Role="NHAN_SU" Type="Self.NHAN_SU" Multiplicity="0..1" />
+    <End Role="PHONG_BAN" Type="Self.PHONG_BAN" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="NHAN_SU">
+        <PropertyRef Name="MaNS" />
+      </Principal>
+      <Dependent Role="PHONG_BAN">
+        <PropertyRef Name="MaTruongPhong" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="NHANSU_DUAN">
+    <End Role="DU_AN" Type="Self.DU_AN" Multiplicity="*" />
+    <End Role="NHAN_SU" Type="Self.NHAN_SU" Multiplicity="*" />
+  </Association>
+  <Association Name="NHANSU_KHENTHUONG">
+    <End Role="KHEN_THUONG" Type="Self.KHEN_THUONG" Multiplicity="*" />
+    <End Role="NHAN_SU" Type="Self.NHAN_SU" Multiplicity="*" />
+  </Association>
+  <EntityContainer Name="QLNSCon" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="BANG_CHAM_CONG" EntityType="Self.BANG_CHAM_CONG" />
+    <EntitySet Name="CHUC_VU" EntityType="Self.CHUC_VU" />
+    <EntitySet Name="DU_AN" EntityType="Self.DU_AN" />
+    <EntitySet Name="HOP_DONG" EntityType="Self.HOP_DONG" />
+    <EntitySet Name="KHEN_THUONG" EntityType="Self.KHEN_THUONG" />
+    <EntitySet Name="LUONGs" EntityType="Self.LUONG" />
+    <EntitySet Name="NHAN_SU" EntityType="Self.NHAN_SU" />
+    <EntitySet Name="NHAN_SU_BACKUP" EntityType="Self.NHAN_SU_BACKUP" />
+    <EntitySet Name="PHONG_BAN" EntityType="Self.PHONG_BAN" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
+    <AssociationSet Name="FK_MaNS_NHAN_SU_BANGCHAMCONG" Association="Self.FK_MaNS_NHAN_SU_BANGCHAMCONG">
+      <End Role="NHAN_SU" EntitySet="NHAN_SU" />
+      <End Role="BANG_CHAM_CONG" EntitySet="BANG_CHAM_CONG" />
+    </AssociationSet>
+    <AssociationSet Name="FK_MaCV_CHUCVU" Association="Self.FK_MaCV_CHUCVU">
+      <End Role="CHUC_VU" EntitySet="CHUC_VU" />
+      <End Role="NHAN_SU" EntitySet="NHAN_SU" />
+    </AssociationSet>
+    <AssociationSet Name="FK_MaQL" Association="Self.FK_MaQL">
+      <End Role="NHAN_SU" EntitySet="NHAN_SU" />
+      <End Role="DU_AN" EntitySet="DU_AN" />
+    </AssociationSet>
+    <AssociationSet Name="FK_MaHD_HOPDONG" Association="Self.FK_MaHD_HOPDONG">
+      <End Role="HOP_DONG" EntitySet="HOP_DONG" />
+      <End Role="NHAN_SU" EntitySet="NHAN_SU" />
+    </AssociationSet>
+    <AssociationSet Name="FK_MaNS_NHAN_SU_HOPDONG" Association="Self.FK_MaNS_NHAN_SU_HOPDONG">
+      <End Role="NHAN_SU" EntitySet="NHAN_SU" />
+      <End Role="HOP_DONG" EntitySet="HOP_DONG" />
+    </AssociationSet>
+    <AssociationSet Name="FK_MaNS_NHAN_SU_LUONG" Association="Self.FK_MaNS_NHAN_SU_LUONG">
+      <End Role="NHAN_SU" EntitySet="NHAN_SU" />
+      <End Role="LUONG" EntitySet="LUONGs" />
+    </AssociationSet>
+    <AssociationSet Name="FK_MaPB_PHONGBAN" Association="Self.FK_MaPB_PHONGBAN">
+      <End Role="PHONG_BAN" EntitySet="PHONG_BAN" />
+      <End Role="NHAN_SU" EntitySet="NHAN_SU" />
+    </AssociationSet>
+    <AssociationSet Name="FK_MaTruongPhong" Association="Self.FK_MaTruongPhong">
+      <End Role="NHAN_SU" EntitySet="NHAN_SU" />
+      <End Role="PHONG_BAN" EntitySet="PHONG_BAN" />
+    </AssociationSet>
+    <AssociationSet Name="NHANSU_DUAN" Association="Self.NHANSU_DUAN">
+      <End Role="DU_AN" EntitySet="DU_AN" />
+      <End Role="NHAN_SU" EntitySet="NHAN_SU" />
+    </AssociationSet>
+    <AssociationSet Name="NHANSU_KHENTHUONG" Association="Self.NHANSU_KHENTHUONG">
+      <End Role="KHEN_THUONG" EntitySet="KHEN_THUONG" />
+      <End Role="NHAN_SU" EntitySet="NHAN_SU" />
+    </AssociationSet>
+    <FunctionImport Name="sp_alterdiagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+      <Parameter Name="version" Mode="In" Type="Int32" />
+      <Parameter Name="definition" Mode="In" Type="Binary" />
+    </FunctionImport>
+    <FunctionImport Name="sp_creatediagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+      <Parameter Name="version" Mode="In" Type="Int32" />
+      <Parameter Name="definition" Mode="In" Type="Binary" />
+    </FunctionImport>
+    <FunctionImport Name="sp_dropdiagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_helpdiagramdefinition" ReturnType="Collection(QLNSModel.sp_helpdiagramdefinition_Result)">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_helpdiagrams" ReturnType="Collection(QLNSModel.sp_helpdiagrams_Result)">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_renamediagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+      <Parameter Name="new_diagramname" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="sp_upgraddiagrams" />
+    <FunctionImport Name="suaPB">
+      <Parameter Name="mapb" Mode="In" Type="Int32" />
+      <Parameter Name="ten" Mode="In" Type="String" />
+      <Parameter Name="diachi" Mode="In" Type="String" />
+      <Parameter Name="email" Mode="In" Type="String" />
+      <Parameter Name="sdt" Mode="In" Type="String" />
+      <Parameter Name="matp" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="suaTTNS">
+      <Parameter Name="mans" Mode="In" Type="Int32" />
+      <Parameter Name="ten" Mode="In" Type="String" />
+      <Parameter Name="ngaysinh" Mode="In" Type="DateTime" />
+      <Parameter Name="gioitinh" Mode="In" Type="Boolean" />
+      <Parameter Name="quequan" Mode="In" Type="String" />
+      <Parameter Name="SDT" Mode="In" Type="String" />
+      <Parameter Name="trinhdo" Mode="In" Type="String" />
+      <Parameter Name="dantoc" Mode="In" Type="String" />
+      <Parameter Name="chuyennganh" Mode="In" Type="String" />
+      <Parameter Name="quoctich" Mode="In" Type="String" />
+      <Parameter Name="diachi" Mode="In" Type="String" />
+      <Parameter Name="mapb" Mode="In" Type="Int32" />
+      <Parameter Name="macv" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="themBCC">
+      <Parameter Name="mans" Mode="In" Type="Int32" />
+      <Parameter Name="thang" Mode="In" Type="Byte" />
+      <Parameter Name="nam" Mode="In" Type="Int32" />
+      <Parameter Name="sndl" Mode="In" Type="Byte" />
+      <Parameter Name="snnp" Mode="In" Type="Byte" />
+      <Parameter Name="snn" Mode="In" Type="Byte" />
+    </FunctionImport>
+    <FunctionImport Name="themNV">
+      <Parameter Name="ten" Mode="In" Type="String" />
+      <Parameter Name="ngaysinh" Mode="In" Type="DateTime" />
+      <Parameter Name="gioitinh" Mode="In" Type="Boolean" />
+      <Parameter Name="quequan" Mode="In" Type="String" />
+      <Parameter Name="sdt" Mode="In" Type="String" />
+      <Parameter Name="trinhdo" Mode="In" Type="String" />
+      <Parameter Name="dantoc" Mode="In" Type="String" />
+      <Parameter Name="chuyennganh" Mode="In" Type="String" />
+      <Parameter Name="quocgia" Mode="In" Type="String" />
+      <Parameter Name="diachi" Mode="In" Type="String" />
+      <Parameter Name="mapb" Mode="In" Type="Int32" />
+      <Parameter Name="maCV" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="themPB">
+      <Parameter Name="ten" Mode="In" Type="String" />
+      <Parameter Name="diachi" Mode="In" Type="String" />
+      <Parameter Name="email" Mode="In" Type="String" />
+      <Parameter Name="sdt" Mode="In" Type="String" />
+      <Parameter Name="matp" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="xemDSPB" ReturnType="Collection(QLNSModel.xemDSPB_Result)" />
+    <FunctionImport Name="xemDSTTNS" ReturnType="Collection(QLNSModel.xemDSTTNS_Result)" />
+    <FunctionImport Name="xemLuongThang" ReturnType="Collection(QLNSModel.xemLuongThang_Result)">
+      <Parameter Name="thang" Mode="In" Type="Byte" />
+      <Parameter Name="nam" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="xoaNS">
+      <Parameter Name="mans" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="xoaPB">
+      <Parameter Name="mapb" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="suaBCC">
+      <Parameter Name="mans" Mode="In" Type="Int32" />
+      <Parameter Name="thang" Mode="In" Type="Byte" />
+      <Parameter Name="nam" Mode="In" Type="Int32" />
+      <Parameter Name="sndl" Mode="In" Type="Byte" />
+      <Parameter Name="snnp" Mode="In" Type="Byte" />
+      <Parameter Name="snn" Mode="In" Type="Byte" />
+    </FunctionImport>
+    <FunctionImport Name="xoaBCC">
+      <Parameter Name="mans" Mode="In" Type="Int32" />
+      <Parameter Name="thang" Mode="In" Type="Byte" />
+      <Parameter Name="nam" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="suaDA">
+      <Parameter Name="mada" Mode="In" Type="Int32" />
+      <Parameter Name="ten" Mode="In" Type="String" />
+      <Parameter Name="TGBD" Mode="In" Type="DateTime" />
+      <Parameter Name="TGHTDK" Mode="In" Type="DateTime" />
+      <Parameter Name="maql" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="xemDSDA" ReturnType="Collection(QLNSModel.xemDSDA_Result)" />
+    <FunctionImport Name="xemDSNSDA" ReturnType="Collection(QLNSModel.xemDSNSDA_Result)">
+      <Parameter Name="mada" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="xoaDA">
+      <Parameter Name="mada" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="xoaNSDA">
+      <Parameter Name="mada" Mode="In" Type="Int32" />
+      <Parameter Name="mans" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="themDA">
+      <Parameter Name="ten" Mode="In" Type="String" />
+      <Parameter Name="TGBD" Mode="In" Type="DateTime" />
+      <Parameter Name="TGHTDK" Mode="In" Type="DateTime" />
+      <Parameter Name="maql" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="themNSDA">
+      <Parameter Name="mada" Mode="In" Type="Int32" />
+      <Parameter Name="mans" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="suaKT">
+      <Parameter Name="makt" Mode="In" Type="Int32" />
+      <Parameter Name="hinhthuc" Mode="In" Type="String" />
+      <Parameter Name="ngaykt" Mode="In" Type="DateTime" />
+      <Parameter Name="giatri" Mode="In" Type="Decimal" />
+      <Parameter Name="noidung" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="taoKT">
+      <Parameter Name="hinhthuc" Mode="In" Type="String" />
+      <Parameter Name="ngaykt" Mode="In" Type="DateTime" />
+      <Parameter Name="giatri" Mode="In" Type="Decimal" />
+      <Parameter Name="noidung" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="themNSKT">
+      <Parameter Name="makt" Mode="In" Type="Int32" />
+      <Parameter Name="mans" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="xemDSKT" ReturnType="Collection(QLNSModel.xemDSKT_Result)" />
+    <FunctionImport Name="xemNSKT" ReturnType="Collection(QLNSModel.xemNSKT_Result)">
+      <Parameter Name="makt" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="xoaKT">
+      <Parameter Name="makt" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="xoaNSKT">
+      <Parameter Name="makt" Mode="In" Type="Int32" />
+      <Parameter Name="mans" Mode="In" Type="Int32" />
+    </FunctionImport>
+  </EntityContainer>
+  <ComplexType Name="sp_helpdiagramdefinition_Result">
+    <Property Type="Int32" Name="version" Nullable="true" />
+    <Property Type="Binary" Name="definition" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="sp_helpdiagrams_Result">
+    <Property Type="String" Name="Database" Nullable="true" MaxLength="128" />
+    <Property Type="String" Name="Name" Nullable="false" MaxLength="128" />
+    <Property Type="Int32" Name="ID" Nullable="false" />
+    <Property Type="String" Name="Owner" Nullable="true" MaxLength="128" />
+    <Property Type="Int32" Name="OwnerID" Nullable="false" />
+  </ComplexType>
+  <ComplexType Name="xemDSPB_Result">
+    <Property Type="Int32" Name="Mã_Phòng" Nullable="false" />
+    <Property Type="String" Name="Tên_Phòng_Ban" Nullable="true" MaxLength="100" />
+    <Property Type="String" Name="Địa_Chỉ" Nullable="true" MaxLength="100" />
+    <Property Type="String" Name="Email" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="Số_ĐT" Nullable="true" MaxLength="10" />
+    <Property Type="String" Name="Mã_Trưởng_phòng" Nullable="true" MaxLength="30" />
+  </ComplexType>
+  <ComplexType Name="xemDSTTNS_Result">
+    <Property Type="Int32" Name="Mã_Nhân_Sự" Nullable="false" />
+    <Property Type="String" Name="Họ_Tên" Nullable="true" MaxLength="50" />
+    <Property Type="DateTime" Name="Ngày_Sinh" Nullable="true" />
+    <Property Type="String" Name="Giới_Tính" Nullable="false" MaxLength="3" />
+    <Property Type="String" Name="SĐT" Nullable="true" MaxLength="10" />
+    <Property Type="String" Name="Quê_Quán" Nullable="true" MaxLength="100" />
+    <Property Type="String" Name="Nơi_Ở_HT" Nullable="true" MaxLength="100" />
+    <Property Type="String" Name="Dân_Tộc" Nullable="true" MaxLength="10" />
+    <Property Type="String" Name="Quốc_Tịch" Nullable="true" MaxLength="10" />
+    <Property Type="String" Name="Trình_Độ" Nullable="true" MaxLength="10" />
+    <Property Type="String" Name="Chuyên_Ngành" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="Phòng_Ban" Nullable="true" MaxLength="100" />
+    <Property Type="Int32" Name="Mã_Hợp_Đồng" Nullable="true" />
+    <Property Type="String" Name="Chức_Vụ" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="Tùy_chọn" Nullable="false" MaxLength="6" />
+  </ComplexType>
+  <ComplexType Name="xemLuongThang_Result">
+    <Property Type="Int32" Name="Mã_nhân_sự" Nullable="false" />
+    <Property Type="String" Name="Tên" Nullable="true" MaxLength="50" />
+    <Property Type="Byte" Name="Số_ngày_nghỉ" Nullable="true" />
+    <Property Type="Byte" Name="Số_ngày_nghỉ_có_phép" Nullable="true" />
+    <Property Type="Decimal" Name="Phụ_cấp" Nullable="true" Precision="19" />
+    <Property Type="Decimal" Name="Lương_cơ_bản" Nullable="true" Precision="19" />
+    <Property Type="Decimal" Name="Tổng_lương" Nullable="true" Precision="19" />
+  </ComplexType>
+  <ComplexType Name="xemDSDA_Result">
+    <Property Type="Int32" Name="Mã_dự_án" Nullable="false" />
+    <Property Type="String" Name="Tên_dự_án" Nullable="true" MaxLength="50" />
+    <Property Type="Byte" Name="Số_thành_viên" Nullable="true" />
+    <Property Type="Int32" Name="Người_quản_lý" Nullable="true" />
+    <Property Type="DateTime" Name="Thời_gian_bắt_đầu" Nullable="true" />
+    <Property Type="DateTime" Name="Thời_gian_HT_dự_kiến" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="xemDSNSDA_Result">
+    <Property Type="Int32" Name="Mã_thành_viên" Nullable="false" />
+    <Property Type="String" Name="Tên_thành_viên" Nullable="true" MaxLength="50" />
+    <Property Type="DateTime" Name="Ngày_Sinh" Nullable="true" />
+    <Property Type="String" Name="Liên_Hệ" Nullable="true" MaxLength="10" />
+  </ComplexType>
+  <ComplexType Name="xemDSKT_Result">
+    <Property Type="Int32" Name="Mã_Khen_Thưởng" Nullable="false" />
+    <Property Type="String" Name="Hình_Thức_Khen_Thưởng" Nullable="true" MaxLength="50" />
+    <Property Type="DateTime" Name="Thời_gian" Nullable="true" />
+    <Property Type="Decimal" Name="Giá_Trị" Nullable="true" Precision="18" Scale="2" />
+    <Property Type="String" Name="Nội_dung" Nullable="true" MaxLength="100" />
+  </ComplexType>
+  <ComplexType Name="xemNSKT_Result">
+    <Property Type="Int32" Name="Mã_nhân_sự" Nullable="false" />
+    <Property Type="String" Name="Họ_Tên" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="Liên_hệ" Nullable="true" MaxLength="10" />
+    <Property Type="String" Name="Địa_chỉ" Nullable="true" MaxLength="100" />
+  </ComplexType>
+</Schema>
